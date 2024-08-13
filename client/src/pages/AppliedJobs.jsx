@@ -353,9 +353,11 @@ const AppliedJobs = () => {
             <FaFilter />
           </Button> 
         </div> */}
-          <div className="p-7 flex flex-wrap gap-8 justify-center">
+          <div className="min-h-screen p-7 flex flex-wrap gap-8 justify-center">
             {!loading && jobs.length === 0 && (
-              <p className=" text-xl text-gray-500">No jobs found</p>
+              <div className="flex justify-center items-center">
+                <Spinner size="xl" />
+              </div>
             )}
             {loading && <p className=" text-xl text-gray-500">Loading...</p>}
             {!loading &&
