@@ -141,12 +141,12 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
           onClick={toggleSearchbar}
         />
         <Button
-          className="w-12 h-10 my-auto hidden lg:block"
+          className="w-12 h-10 p-0 m-0 my-auto hidden lg:block focus:ring-0 dark:text-slate-50"
           color="gray"
           pill
           onClick={() => dispatch(toggleTheme())}
         >
-          {theme === "dark" ? <FaSun /> : <FaMoon />}
+          {theme === "dark" ? <FaSun /> : <FaMoon color="black" />}
         </Button>
         {currentUser ? (
           <Dropdown
