@@ -97,7 +97,7 @@ export const google = async (req, res, next) => {
         process.env.JWT_SECRET
       );
       const { password: hashedPassword2, ...rest } = newUser._doc;
-      const expiryDate = new Date(Date.now() + 15 * 24 * 3600000);
+      const expiryDate = new Date(Date.now() + 15 * 24 * 60 * 60 * 1000);
       res
         .cookie("access_token", token, {
           httpOnly: true,

@@ -63,9 +63,9 @@ export default function DashUsers() {
     }
   };
 
-  {
-    loading && (
-      <div className="flex justify-center items-center min-h-screen">
+  if (loading) {
+    return (
+      <div className="m-auto">
         <Spinner size="xl" />
       </div>
     );
@@ -134,7 +134,9 @@ export default function DashUsers() {
           )}
         </>
       ) : (
-        <p>You have no users yet!</p>
+        <div className="h-full flex justify-center items-center">
+          <Spinner size="xl" />
+        </div>
       )}
       <Modal
         show={showModal}

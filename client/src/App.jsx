@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import SignIn from "./pages/SignIn";
@@ -15,13 +15,15 @@ import JobPage from "./pages/JobPage";
 import UpdateJob from "./pages/UpdateJob";
 import ApplyJob from "./pages/ApplyJob";
 import PageNotFound from "./pages/PageNotFound";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppliedJobs from "./pages/AppliedJobs";
 import Help from "./pages/Help";
 import PostedJobs from "./pages/PostedJobs";
+import { useSelector } from "react-redux";
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  
 
   return (
     <BrowserRouter>
@@ -33,13 +35,14 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/help" element={<Help />} />
-        <Route path="/job/:jobSlug" element={<JobPage />} />
-        <Route path="/apply/:jobId" element={<ApplyJob />} />
-        <Route path="/applied-jobs" element={<AppliedJobs />} />
-        <Route path="*" element={<PageNotFound />} />
         <Route element={<PrivateRoute />}>
+          <Route path="/search" element={<Search />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/job/:jobSlug" element={<JobPage />} />
+          <Route path="/apply/:jobId" element={<ApplyJob />} />
+          <Route path="/applied-jobs" element={<AppliedJobs />} />
+          <Route path="*" element={<PageNotFound />} />
+
           <Route
             path="/dashboard"
             element={

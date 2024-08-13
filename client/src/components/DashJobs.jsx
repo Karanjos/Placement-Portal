@@ -1,11 +1,11 @@
-import { Button, Modal, Table } from "flowbite-react";
+import { Button, Modal, Spinner, Table } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const DashJobs = ({ jobId }) => {
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading } = useSelector((state) => state.user);
   const [userJobs, setUserJobs] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -62,6 +62,15 @@ const DashJobs = ({ jobId }) => {
       console.log(error);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="m-auto">
+        <Spinner size="xl" />
+      </div>
+    );
+  }
+
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-track-slate-500">
       {currentUser.isAdmin && userJobs.length > 0 ? (
@@ -134,7 +143,9 @@ const DashJobs = ({ jobId }) => {
           )}
         </>
       ) : (
-        <p>you have no job yet</p>
+        <div className="h-full flex justify-center items-center">
+          <Spinner size="xl" />
+        </div>
       )}
       <Modal
         show={showModal}

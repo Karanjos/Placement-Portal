@@ -1,11 +1,11 @@
-import { Table } from "flowbite-react";
+import { Spinner, Table } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const DashPlacedStudents = () => {
   const [placedStudents, setPlacedStudents] = useState([]);
   const [totalPlacedStudents, setTotalPlacedStudents] = useState(0);
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading } = useSelector((state) => state.user);
 
   useEffect(() => {
     try {
@@ -20,6 +20,14 @@ const DashPlacedStudents = () => {
       console.error(error.message);
     }
   }, [currentUser._id]);
+
+  if (loading) {
+    return (
+      <div className="m-auto">
+        <Spinner size="xl" />
+      </div>
+    );
+  }
 
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 mt-5">

@@ -73,6 +73,7 @@ const DashApplications = () => {
               return acc;
             }, {})
           );
+          // console.log(data.applications);
           if (data.applications.length < 9) {
             setShowMore(false);
           }
@@ -327,8 +328,8 @@ const DashApplications = () => {
                   <Table.Cell>
                     {application.application.applicantEmail}
                   </Table.Cell>
-                  <Table.Cell>{application.job.jobTitle}</Table.Cell>
-                  <Table.Cell>{application.job.companyName}</Table.Cell>
+                  <Table.Cell>{application.job?.jobTitle}</Table.Cell>
+                  <Table.Cell>{application.job?.companyName}</Table.Cell>
 
                   <Table.Cell>
                     <Select

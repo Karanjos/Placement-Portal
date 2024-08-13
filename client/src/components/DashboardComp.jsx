@@ -1,4 +1,4 @@
-import { Badge, Button, Select, Table } from "flowbite-react";
+import { Badge, Button, Select, Spinner, Table } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { FaBriefcase, FaUserCheck } from "react-icons/fa";
 import {
@@ -16,7 +16,7 @@ const DashboardComp = () => {
   const [jobs, setJobs] = useState([]);
   const [totalJobs, setTotalJobs] = useState(0);
   const [lastMonthJobs, setLastMonthJobs] = useState(0);
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading } = useSelector((state) => state.user);
   const [applications, setApplications] = useState([]);
   const [totalApplications, setTotalApplications] = useState(0);
   const [lastMonthApplications, setLastMonthApplications] = useState(0);
@@ -111,6 +111,16 @@ const DashboardComp = () => {
       fetchPlacedStudents();
     }
   }, [currentUser]);
+
+  if (loading) {
+    console.log("loading");
+
+    return (
+      <div className="m-auto">
+        <Spinner size="xl" />
+      </div>
+    );
+  }
 
   return (
     <div className="p-3 md:mx-auto py-10">
